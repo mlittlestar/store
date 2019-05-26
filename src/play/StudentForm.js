@@ -41,21 +41,21 @@ class StudentForm extends React.Component{
         return(
             <div className="studentForm">
                 <Form onSubmit={this.handleSubmit} className="login-form">
-                    <Form.Item>
+                    <Form.Item label="姓名">
                         {getFieldDecorator('username', {
                             rules: [{ required: true, message: 'Please input your username!' }],
                         })(
                             <Input placeholder="username"/>,
                         )}
                     </Form.Item>
-                    <Form.Item>
+                    <Form.Item label="状态">
                         {getFieldDecorator('status', {
                             rules: [{ required: true, message: 'Please input your status!' }],
                         })(
                             <Input placeholder="status"/>,
                         )}
                     </Form.Item>
-                    <Form.Item>
+                    <Form.Item label="分类">
                         {getFieldDecorator('type', {
                             rules: [{ required: true, message: 'Please input your type!' }],
                         })(

@@ -22,6 +22,7 @@ class Teacher extends React.Component{
             if(status===200){
                 this.setState({
                     teachers:data
+                    
                 })
             }else{
                 alert(message);
@@ -36,6 +37,8 @@ class Teacher extends React.Component{
     render(){
         
         let {teachers}=this.state;
+
+        let student=this.props.location.state;
         const columns=[
             {
                 title: 'ID',
@@ -75,9 +78,10 @@ class Teacher extends React.Component{
 
 
         return(
+            
             <div className="teacher">
                 <h2>{this.props.location.state.username}</h2>
-                {JSON.stringify(this.props.location.state)}
+                {JSON.stringify(student)}
                 <Button type="primary">添加</Button>
                 <Button type="danger">批量删除</Button>
                 <Button type="link" onClick={this.goBack.bind(this)}>返回</Button>

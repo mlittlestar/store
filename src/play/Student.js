@@ -4,6 +4,15 @@ import { Button,Table,Icon,Modal,message} from 'antd';
 
 import StudentForm from './StudentForm';
 
+// 当服务端异常的时候都会执行该回调
+$.ajaxSetup({
+    error:function(){
+      message.error("服务器端异常")
+    }
+  })
+
+
+
 
 class Student extends React.Component{
     constructor(props){
