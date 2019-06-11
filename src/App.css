@@ -31,14 +31,15 @@
   
 }
 
+.App > .content .nav Menu{
+  width: 200px;
+}
+
 .App > .content .nav li{
   list-style: none;
   line-height:50px; 
-  text-align: center;
-  
+  text-align: center;  
 }
-
-
 
 .App > .content .content-right {
   flex:1;

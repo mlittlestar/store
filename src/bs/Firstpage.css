@@ -1,0 +1,10 @@
+.firstpage{
+    text-align: left; 
+}
+
+html,body,#root,.firstpage,.App {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+ 
