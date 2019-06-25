@@ -3,12 +3,7 @@ import $ from 'jquery';
 import {Table, Button,Icon,Modal,message} from 'antd';
 import RoleForm from './RoleForm';
 
-// 当服务端异常的时候都会执行该回调
-$.ajaxSetup({
-    error:function(){
-      message.error("服务器端异常")
-    }
-  })
+
 
 class Role extends React.Component{
     constructor(){

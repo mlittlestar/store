@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import axios from '../axioss/http/index'
 import { Button, Table,Icon, Modal,message } from 'antd';
 
 import RiderForm from './RiderForm';
@@ -20,15 +21,11 @@ class Rider extends React.Component{
     }
 
     loadRider(){
-        let url="http://127.0.0.1:8989/rider/findAll";
-        $.get(url,({status,data,message})=>{
-            if(status===200){
-                this.setState({
-                    riders:data
-                })
-            }else{
-                alert(message);
-            }
+        axios.get('/rider/findAll')
+        .then((result)=>{
+        this.setState({
+            riders:result.data
+            })
         })
     }
 
@@ -43,13 +40,14 @@ class Rider extends React.Component{
             cancelText: 'No',
             onOk:()=> {
                 //进行删除
-                $.get("http://127.0.0.1:8989/rider/deleteRiderById?id="+id,({status,message})=>{
-                    if(status===200){
-                        this.loadRider();
-                    }else{
-                        alert(message);
+                axios.get('/rider/deleteRiderById',{
+                    params:{id}
+                  }).then((result)=>{
+                    this.loadRider();
+                    if(result){
+                      message.success(result.statusText)
                     }
-                })
+                  })
             },
             onCancel() {
               console.log('Cancel');
@@ -64,20 +62,16 @@ class Rider extends React.Component{
            e.preventDefault();
            this.form.validateFields((err, values) => {
            if (!err) {
-               console.log(values)
-               let url ="http://127.0.0.1:8989/rider/saveOrupdateRider";
                
- 
-               $.post(url,values,({status,message})=>{
-               if(status === 200){
-                   message.success(message)
-                   this.setState({ visible: false, });
-                   // 页面刷新
-                   this.loadRider();
-           } else {
-                   message.error(message);
-           }
-        })
+            // alert(JSON.stringify(values))
+            axios.post('/rider/saveOrupdateRider',values)
+                .then(()=>{
+                    this.setState({ visible: false, });
+                    this.loadRider();
+                })
+                .catch(function (error) {
+                    console.log(error);
+            });
        }
     });
            // 2. 与后台交互完成保存或更新

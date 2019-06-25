@@ -9,6 +9,8 @@ const { override, fixBabelImports,addLessLoader } = require('customize-cra');
    }),
    addLessLoader({
       javascriptEnabled: true,
-       modifyVars: { '@primary-color': 'teal' },
+       modifyVars: { '@primary-color': 'teal',
+       '@border-radius-base': '5px',
+       },
      }),
  );
